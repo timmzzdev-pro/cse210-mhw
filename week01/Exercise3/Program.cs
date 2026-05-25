@@ -1,40 +1,45 @@
 using System;
 
+/*
+ EXCEEDING REQUIREMENTS:
+ - The program only hides words that are not already hidden.
+ - It can easily support multiple scriptures.
+*/
+
 class Program
 {
     static void Main(string[] args)
     {
+        Reference reference = new Reference("Proverbs", 3, 5, 6);
+
+        Scripture scripture = new Scripture(
+            reference,
+            "Trust in the Lord with all thine heart and lean not unto thine own understanding In all thy ways acknowledge him and he shall direct thy paths"
+        );
+
+        while (!scripture.IsCompletelyHidden())
         {
-            // For Parts 1 and 2, where the user specified the number...
-            // Console.Write("What is the magic number? ");
-            // int magicNumber = int.Parse(Console.ReadLine());
+            Console.Clear();
 
-            // For Part 3, where we use a random number
-            Random randomGenerator = new Random();
-            int magicNumber = randomGenerator.Next(1, 101);
+            Console.WriteLine(scripture.GetDisplayText());
 
-            int guess = -1;
+            Console.WriteLine();
+            Console.Write("Press Enter to continue or type 'quit': ");
 
-            // We could also use a do-while loop here...
-            while (guess != magicNumber)
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "quit")
             {
-                Console.Write("What is your guess? ");
-                guess = int.Parse(Console.ReadLine());
-
-                if (magicNumber > guess)
-                {
-                    Console.WriteLine("Higher");
-                }
-                else if (magicNumber < guess)
-                {
-                    Console.WriteLine("Lower");
-                }
-                else
-                {
-                    Console.WriteLine("You guessed it!");
-                }
-
+                break;
             }
+
+            scripture.HideRandomWords(3);
         }
+
+        Console.Clear();
+        Console.WriteLine(scripture.GetDisplayText());
+
+        Console.WriteLine();
+        Console.WriteLine("Program ended.");
     }
 }
