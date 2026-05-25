@@ -1,10 +1,6 @@
 using System;
 
-/*
- EXCEEDING REQUIREMENTS:
- - The program only hides words that are not already hidden.
- - It can easily support multiple scriptures.
-*/
+
 
 class Program
 {
